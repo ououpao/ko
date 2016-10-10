@@ -4,7 +4,8 @@ if (module.hot) {
   module.hot.accept();
 }
 window.data = {
-  name: 'kraaas',
+	first: 'Liao',
+  name: 'jingsi',
   age: 23,
   job: {
     name: '前端开发工程师',

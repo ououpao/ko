@@ -5,49 +5,61 @@
   <meta charset="UTF-8">
   <title>kite</title>
   <style>
-  	/*[k-cloack] {
-  		display: none;
-  	}*/
-  	* {
-  		box-sizing: border-box;
-  	}
-  	html,
-  	body {
-  		font: 14px '微软雅黑';
-  		margin: 0;
-  		padding: 0;
-  	}
-  	.profile {
-  		padding: 20px;
-  		width: 300px;
-  		height: 300px;
-  		margin: 50px auto;
-  		box-shadow: 0px 0px 5px #dedede;
-  	}
-  	.profile .profile_item {
-  		padding: 10px 0;
-  	}
+  /*[k-cloack] {
+      display: none;
+    }*/
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  html,
+  body {
+    font: 14px '微软雅黑';
+    margin: 0;
+    padding: 0;
+  }
+  
+  .profile {
+    padding: 20px;
+    width: 300px;
+    height: 300px;
+    margin: 50px auto;
+    box-shadow: 0px 0px 5px #dedede;
+  }
+  
+  .profile .profile_item {
+    padding: 10px 0;
+  }
   </style>
 </head>
 
 <body>
   <main id="app" k-cloack class="profile">
-  	<section class="profile_item">
-  		<label>姓名：</label>
-  		<span k-text="name"></span>
-  	</section>
-  	<section class="profile_item">
-  		<label>年龄：</label>
-  		<span k-text="age"></span>
-  	</section>
-  	<section class="profile_item">
-  		<label>职业：</label>
-  		<span k-text="job.name"></span>
-  	</section>
-  	<section class="profile_item">
-  		<label>工作年限：</label>
-  		<span k-text="job.year"></span>
-  	</section>
+    <section class="profile_item">
+      <label>姓：</label>
+      <span k-text="first"></span>
+    </section>
+    <section class="profile_item">
+      <label>名：</label>
+      <span k-text="name"></span>
+    </section>
+    <section class="profile_item">
+      <label>姓名：</label>
+      <span k-text="first + name"></span>
+    </section>
+    <section class="profile_item">
+      <label>年龄：</label>
+      <span k-text="age "></span>
+    </section>
+    <section class="profile_item">
+      <label>职业：</label>
+      <span k-text="job.name"></span>
+    </section>
+    <section class="profile_item">
+      <label>工作年限：</label>
+      <span k-text="job.year"></span>
+    </section>
   </main>
 </body>
 
