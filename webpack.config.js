@@ -13,7 +13,7 @@ module.exports = {
     chunkFilename: '[name].js',
     publicPath: '/'
   },
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'source-map',
   module: {
     loaders: [{
       test: /\.js$/,
