@@ -6,6 +6,8 @@ if (module.hot) {
 window.data = {
 	first: 'Liao',
   name: 'jingsi',
+  nickName: 'kraaas',
+  github: 'github.com/kraaas',
   age: 23,
   job: {
     name: '前端开发工程师',

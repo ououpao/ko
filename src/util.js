@@ -42,3 +42,8 @@ export function getAttrs(node) {
 
   return result
 }
+
+export function isNumber(number) {
+  number = Number(number)
+  return !isNaN(number) && typeof number === 'number'
+}

@@ -1,5 +1,7 @@
 import Dep from './dep'
-const caculateReg = /(\+\s*)(\b\w+\b)/g
+import { isNumber } from './util'
+
+const oprationReg = /([\+|-|\*|\/|%]\s*)(\b\w+\b)/g
 
 export default class Watcher {
   constructor(vm, exp, cb, context) {
@@ -28,8 +30,14 @@ export default class Watcher {
 
 function createGetter(exp) {
   let getter
-  exp = exp.replace(caculateReg, (str, opration, property) => {
-    return `${opration}scope.${property}`
+  exp = exp.replace(oprationReg, (str, oprate, oprater) => {
+    let result
+    if (oprater && isNumber(oprater)) {
+      result = str
+    } else {
+      result = `${oprate}scope.${oprater}`
+    }
+    return result
   })
   try {
     getter = new Function('scope', `return scope.${exp}`)

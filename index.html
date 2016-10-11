@@ -23,7 +23,7 @@
   .profile {
     padding: 20px;
     width: 300px;
-    height: 300px;
+    min-height: 300px;
     margin: 50px auto;
     box-shadow: 0px 0px 5px #dedede;
   }
@@ -50,7 +50,15 @@
     </section>
     <section class="profile_item">
       <label>年龄：</label>
-      <span k-text="age "></span>
+      <span k-text="age * 2"></span>
+    </section>
+    <section class="profile_item">
+      <label>nickName：</label>
+      <span k-text="nickName"></span>
+    </section>
+    <section class="profile_item">
+      <label>github:</label>
+      <a href="{{github}}" k-text="github" target="_blank"></a>
     </section>
     <section class="profile_item">
       <label>职业：</label>
@@ -58,7 +66,7 @@
     </section>
     <section class="profile_item">
       <label>工作年限：</label>
-      <span k-text="job.year"></span>
+      <span k-text="job.year + 2"></span>
     </section>
   </main>
 </body>
