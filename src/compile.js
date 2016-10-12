@@ -1,12 +1,11 @@
 import { getAttrs, nodeToFragment } from './util'
-import Parser from './parser'
+import parsers from './directives'
 
 export default class Compile {
   constructor(vm, el) {
     this.vm = vm
     this._unCompileNodes = []
     this._fragment = nodeToFragment(el)
-    this.parser = new Parser(vm)
     this.init()
   }
 
@@ -23,7 +22,7 @@ export default class Compile {
       node = childNodes[i]
       attrs = getAttrs(node)
       if (node.nodeType == 1) {
-        directves = getDirectves(attrs)
+        directves = getDirectves(attrs) 
         if (directves.length) {
           this._unCompileNodes.push({
             node,
@@ -45,7 +44,10 @@ export default class Compile {
 
   compileDirective(directves, node) {
     directves.forEach(directve => {
-      this.parser.parse(directve, node)
+      const Parser = parsers[directve.name]
+      if(Parser) {
+        new Parser(this.vm, directve.exp, node)
+      }
     })
   }
 }

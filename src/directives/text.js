@@ -1,16 +1,15 @@
 import Watcher from '../watcher'
+import Parser from '../parser'
 
-export default class vText {
+export default class vText extends Parser{
   constructor(vm, exp, node) {
-    this.vm = vm
+    super(vm)
     this.exp = exp
     this.node = node
     this.init()
   }
   init() {
-    this.watcher = new Watcher(this.vm, this.exp, this.update, this)
-    this.update(this.watcher.value)
-    this.vm._watchers.push(this.watcher)
+    this.bind(this.exp)
   }
   update(newValue) {
     this.node.textContent = newValue
