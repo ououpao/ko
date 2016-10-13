@@ -38,7 +38,7 @@
   <main id="app" k-cloack class="profile">
     <section class="profile_item">
       <label>姓：</label>
-      <span k-text="first"></span>
+      <span k-text="first.split(',')"></span>
     </section>
     <section class="profile_item">
       <label>名：</label>
@@ -66,7 +66,7 @@
     </section>
     <section class="profile_item">
       <label>工作年限：</label>
-      <span k-text="job.year + 2"></span>
+      <span k-text="job.year"></span>
     </section>
   </main>
 </body>
