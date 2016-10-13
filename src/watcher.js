@@ -13,7 +13,7 @@ export default class Watcher {
     Dep.target = null
   }
   update() {
-    const value = this.getter()
-    this.cb(value)
+    this.value = this.getter()
+    this.cb(this.value)
   }
 }
