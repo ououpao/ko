@@ -47,3 +47,11 @@ export function isNumber(number) {
   number = Number(number)
   return !isNaN(number) && typeof number === 'number'
 }
+
+export function isNodeType(node) {
+  return node && node.nodeType == 1
+}
+
+export function isTextType(node) {
+  return node && node.nodeType == 3
+}

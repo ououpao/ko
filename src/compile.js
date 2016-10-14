@@ -1,4 +1,9 @@
-import { getAttrs, nodeToFragment } from './util'
+import {
+  getAttrs,
+  nodeToFragment,
+  isNodeType,
+  isTextType
+} from './util'
 import parsers from './directives'
 
 function isDirective(name) {
@@ -38,14 +43,14 @@ export default class Compile {
     this.compileNodes(this._unCompileNodes)
   }
 
+  // todo
   scanElement(el) {
     const childNodes = el.childNodes
     let node, attrs, directves, nodeType, i = childNodes.length
 
     while (i--) {
       node = childNodes[i]
-      nodeType = node.nodeType
-      if (nodeType == 1) {
+      if (isNodeType(node)) {
         attrs = getAttrs(node)
         directves = getDirectves(attrs)
         if (directves.length) {
@@ -57,8 +62,8 @@ export default class Compile {
         if (node.hasChildNodes()) {
           this.scanElement(node)
         }
-      } else if (nodeType == 3) {
-        console.log(node.textContent)
+      } else if (isTextType(node)) {
+        this.compileText()
       }
     }
   }
@@ -67,6 +72,10 @@ export default class Compile {
     nodes.forEach(item => {
       this.compileDirective(item.directves, item.node)
     })
+  }
+
+  compileText(node) {
+
   }
 
   compileDirective(directves, node) {
