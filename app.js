@@ -12,7 +12,8 @@ window.data = {
   job: {
     name: '前端开发工程师',
     year: 1
-  }
+  },
+  company: 'Qingsongxing'
 }
 window.kite = new Kite({
   el: '#app',

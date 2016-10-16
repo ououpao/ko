@@ -27,11 +27,10 @@ export function isPlainObject(obj) {
   }
 }
 
-export function getAttrs(node) {
-  const attrs = node.attributes || []
+export function getAttrsArray(node) {
+  const attrs = node.attributes
   let attr, i = attrs.length
   let result = []
-
   while (i--) {
     attr = attrs[i]
     result.push({
@@ -39,7 +38,6 @@ export function getAttrs(node) {
       value: attr.value
     })
   }
-
   return result
 }
 
