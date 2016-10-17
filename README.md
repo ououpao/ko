@@ -1,4 +1,4 @@
-## Kite
+## Korol
 Simple mvvm library.
 ## todo
 #### direcitves

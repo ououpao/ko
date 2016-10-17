@@ -3,7 +3,7 @@ import parsers from './parser'
 import observer from './observer'
 import Compile from './compile'
 
-class Kite {
+class Korol {
   constructor(options) {
     this._options = Object.assign({}, options)
 
@@ -31,4 +31,4 @@ class Kite {
   }
 }
 
-export default Kite
+export default Korol

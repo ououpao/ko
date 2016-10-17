@@ -1,4 +1,4 @@
-import Kite from './src/index'
+import Ko from './src/index'
 
 if (module.hot) {
   module.hot.accept();
@@ -15,7 +15,7 @@ window.data = {
   },
   company: 'Qingsongxing'
 }
-window.kite = new Kite({
+window.Ko = new Ko({
   el: '#app',
   data: data
 })
