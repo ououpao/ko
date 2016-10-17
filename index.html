@@ -20,7 +20,7 @@
     padding: 0;
   }
   
-  .profile {
+  .profile, .skill {
     padding: 20px;
     width: 300px;
     min-height: 300px;
@@ -28,50 +28,58 @@
     box-shadow: 0px 0px 5px #dedede;
   }
   
-  .profile .profile_item {
+  .profile .profile_item, .skill .skill_item {
     padding: 10px 0;
   }
   </style>
 </head>
 
 <body>
-  <main id="app" k-cloack class="profile">
-    <section class="profile_item">
-      <label>姓：</label>
-      <span k-text="first.split(',')"></span>
-    </section>
-    <section class="profile_item">
-      <label>名：</label>
-      <span k-text="name"></span>
-    </section>
-    <section class="profile_item">
-      <label>姓名：</label>
-      <span k-text="first"></span>
-    </section>
-    <section class="profile_item">
-      <label>年龄：</label>
-      <span k-text="age * 2"></span>
-    </section>
-    <section class="profile_item">
-      <label>nickName：</label>
-      <span k-text="nickName"></span>
-    </section>
-    <section class="profile_item">
-      <label>github:</label>
-      <a href="{{github}}" k-text="github" target="_blank"></a>
-    </section>
-    <section class="profile_item">
-      <label>职业：</label>
-      <span k-text="job.name"></span>
-    </section>
-    <section class="profile_item">
-      <label>工作年限：</label>
-      <span k-text="job.year"></span>
-    </section>
-    <section class="profile_item">
-      <label>company：</label>
-      <span>your company is: {{company}}, this is a big company!</span>
-    </section>
+  <main id="app" k-cloack>
+    <!-- <div class="profile">
+      <section class="profile_item">
+        <label>姓：</label>
+        <span k-text="first.split(',')"></span>
+      </section>
+      <section class="profile_item">
+        <label>名：</label>
+        <span k-text="name"></span>
+      </section>
+      <section class="profile_item">
+        <label>姓名：</label>
+        <span k-text="first"></span>
+      </section>
+      <section class="profile_item">
+        <label>年龄：</label>
+        <span k-text="age * 2"></span>
+      </section>
+      <section class="profile_item">
+        <label>nickName：</label>
+        <span k-text="nickName"></span>
+      </section>
+      <section class="profile_item">
+        <label>github:</label>
+        <a href="{{github}}" k-text="github" target="_blank"></a>
+      </section>
+      <section class="profile_item">
+        <label>职业：</label>
+        <span k-text="job.name"></span>
+      </section>
+      <section class="profile_item">
+        <label>工作年限：</label>
+        <span k-text="job.year"></span>
+      </section>
+      <section class="profile_item">
+        <label>company：</label>
+        <span>your company is: {{company}}, this is a big company!</span>
+      </section>
+    </div> -->
+    <div class="skill">
+      <section class="skill_item" k-for="">
+        <span>Javascript:</span>
+        <span>8</span>
+      </section>
+    </div>
   </main>
 </body>
 

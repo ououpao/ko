@@ -13,7 +13,17 @@ window.data = {
     name: '前端开发工程师',
     year: 1
   },
-  company: 'Qingsongxing'
+  company: 'Qingsongxing',
+  skills: [{
+    name: 'Javascript',
+    mastery: 8
+  }, {
+    name: 'CSS',
+    mastery: 8
+  }, {
+    name: 'HTML',
+    mastery: 8
+  }]
 }
 window.Ko = new Ko({
   el: '#app',
