@@ -5,4 +5,5 @@ Simple mvvm library.
 - [x] text
 - [ ] for
 - [ ] mthods
+
 #### components system
