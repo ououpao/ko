@@ -14,7 +14,7 @@ window.data = {
     year: 1
   },
   company: 'Qingsongxing',
-  skills: [{
+  skillList: [{
     name: 'Javascript',
     mastery: 8
   }, {

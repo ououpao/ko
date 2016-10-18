@@ -2,7 +2,7 @@ export default class Dep {
 	constructor() {
 		this.subs = []
 	}
-	addDep(watcher) {
+	addSub(watcher) {
 		this.subs.push(watcher)
 	}
 	notify(newVal, oldVal) {

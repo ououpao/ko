@@ -19,7 +19,7 @@ class Observer {
       configurable: true,
       get() {
         if (Dep.target) {
-          dep.addDep(Dep.target)
+          dep.addSub(Dep.target)
         }
         return val
       },
