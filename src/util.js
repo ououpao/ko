@@ -6,7 +6,6 @@ export function query(el) {
       throw new Error(`Cannot find element: ${selector}`)
     }
   }
-
   return el
 }
 
@@ -37,8 +36,11 @@ export function each(obj, callback) {
   }
 }
 
+export function createFragment() {
+  return document.createDocumentFragment()
+}
 export function nodeToFragment(node) {
-  let fragment = document.createDocumentFragment()
+  let fragment = createFragment()
   let child
   while (child = node.firstChild) {
     fragment.appendChild(child)
@@ -90,4 +92,11 @@ export function isNodeType(node) {
 
 export function isTextType(node) {
   return node && node.nodeType == 3
+}
+
+export function def(obj, property, value) {
+  Object.defineProperty(obj, property, {
+    enumerable: true,
+    value: value
+  })
 }

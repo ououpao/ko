@@ -75,9 +75,9 @@
       </section>
     </div> -->
     <div class="skill">
-      <section class="skill_item" k-for="(skill, index) in skillList">
-        <span v-bind="skill.name"></span>
-        <span v-text="skill.mastery"></span>
+      <section class="skill_item" k-for="skill in skillList">
+        <span k-text="skill.name"></span>
+        <span k-text="skill.mastery"></span>
       </section>
     </div>
   </main>

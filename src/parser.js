@@ -56,13 +56,13 @@ export default class Parser {
 
   bind(exp) {
     this.exp = exp
-    this.getter = this.createGetter(exp)
+    this.getter = this.createGetter(exp, this.scope || this.vm._data)
     this.watcher = new Watcher(this.vm, this.exp, this.getter, this.update.bind(this))
     this.update(this.watcher.value)
     this.vm._watchers.push(this.watcher)
   }
 
-  createGetter(exp) {
+  createGetter(exp, scope) {
     let getter
     exp = this.bindScope(exp);
 
@@ -79,7 +79,7 @@ export default class Parser {
     }
 
     return () => {
-      return getter(this.vm._data)
+      return getter(scope)
     }
   }
 
