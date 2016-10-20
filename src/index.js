@@ -1,7 +1,7 @@
 import { query } from './util'
 import parsers from './parser'
 import observer from './observer'
-import Compile from './compile'
+import Compiler from './compiler'
 
 class Korol {
   constructor(options) {
@@ -26,7 +26,7 @@ class Korol {
   }
 
   mount(el) {
-    const compiler = new Compile(this, el)
+    const compiler = new Compiler(this, el)
     this._el.appendChild(compiler._fragment)
   }
 }

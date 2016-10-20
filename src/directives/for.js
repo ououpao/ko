@@ -1,5 +1,5 @@
 import Parser from '../parser'
-import {each, def, createFragment} from '../util'
+import { each, def, createFragment } from '../util'
 
 const forExpReg = /(.*)\s+in\s+(.*)/
 
@@ -16,13 +16,12 @@ export default class ForParser extends Parser {
 
   init() {
     this.parse()
-    // this.bind(this.exp)
   }
 
   parse() {
     const scope = this.scope || this.vm._data
     const matchs = this.exp.match(forExpReg)
-    const alias = matchs[1] 
+    const alias = matchs[1]
     const iterator = matchs[2]
     const iteratorGetter = this.createGetter(iterator, scope)
     const dataList = iteratorGetter()
@@ -31,10 +30,12 @@ export default class ForParser extends Parser {
       const $scope = Object.create(scope)
       const el = this.node.cloneNode(true)
       def($scope, alias, data)
-      this.vm._compiler.compile(el, $scope)
+      el.removeAttribute('k-for')
+      this.vm._compiler.compile(el, true, $scope)
       listFragment.appendChild(el)
     })
     this.$parent.insertBefore(listFragment, this.$next)
+    this.$parent.removeChild(this.node)
   }
 
   update(newValue) {

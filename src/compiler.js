@@ -62,13 +62,15 @@ export default class Compile {
   }
 
   init() {
-    this.compile(this._fragment)
-    this.compileNodes(this._unCompileNodes)
+    this.compile(this._fragment, true)
   }
 
-  compile(el, scope) {
+  compile(el, root, scope) {
     const childNodes = el.childNodes
     let node, i = childNodes.length
+    if(root) {
+      this._unCompileNodes = []
+    }
     if (hasDirective(el)) {
       this._unCompileNodes.push([el, scope])
     }
@@ -80,6 +82,9 @@ export default class Compile {
       if (node.hasChildNodes() && !isLateCompile(node)) {
         this.compile(node)
       }
+    }
+    if (root) {
+      this.compileNodes(this._unCompileNodes)
     }
   }
 
