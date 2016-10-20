@@ -3,7 +3,7 @@ Simple mvvm library.
 ## todo
 #### direcitves
 - [x] text
-- [ ] for
+- [x] for
 - [ ] mthods
 
 #### components system
