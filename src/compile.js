@@ -2,7 +2,8 @@ import {
   getAttrsArray,
   nodeToFragment,
   isNodeType,
-  isTextType
+  isTextType,
+  hasAttr
 } from './util'
 import Directives from './directives'
 
@@ -46,6 +47,10 @@ function hasDirective(node) {
   }
 }
 
+function isLateCompile(node) {
+  return hasAttr(node, 'k-if') || hasAttr(node, 'k-for') || hasAttr(node, 'k-pre');
+}
+
 export default class Compile {
   constructor(vm, el) {
     this.vm = vm
@@ -68,7 +73,7 @@ export default class Compile {
       if (hasDirective(node)) {
         this._unCompileNodes.push(node)
       }
-      if (node.hasChildNodes()) {
+      if (node.hasChildNodes() && !isLateCompile(node)) {
         this.scanElement(node)
       }
     }

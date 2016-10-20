@@ -10,6 +10,33 @@ export function query(el) {
   return el
 }
 
+export function isArray(obj) {
+  return Object.prototype.toString.call(obj) === '[object Array]'
+}
+
+export function isObject(obj) {
+  return Object.prototype.toString.call(obj) === '[object Object]'
+}
+
+export function each(obj, callback) {
+  if (!obj) return
+  if (isArray(obj)) {
+    obj.forEach(function(item, index, arry) {
+      callback(item, index, arry)
+    })
+  } else if (isObject(obj)) {
+    let keys = Object.keys(obj)
+    kes.forEach(function(key) {
+      callback(obj[key], key, obj)
+    })
+  } else if (obj.length) {
+    let len = obj.length
+    while (len--) {
+      callback(obj[len], len, obj)
+    }
+  }
+}
+
 export function nodeToFragment(node) {
   let fragment = document.createDocumentFragment()
   let child
@@ -39,6 +66,17 @@ export function getAttrsArray(node) {
     })
   }
   return result
+}
+
+export function hasAttr(node, name) {
+  const attrs = node.attributes
+  let flag
+  each(attrs, function(attr) {
+    if (attr.name == name) {
+      flag = true
+    }
+  })
+  return flag
 }
 
 export function isNumber(number) {

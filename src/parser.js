@@ -57,7 +57,7 @@ export default class Parser {
   bind(exp) {
     this.exp = exp
     this.getter = this.createGetter(exp)
-    this.watcher = new Watcher(this.vm, this.getter, this.update.bind(this))
+    this.watcher = new Watcher(this.vm, this.exp, this.getter, this.update.bind(this))
     this.update(this.watcher.value)
     this.vm._watchers.push(this.watcher)
   }
