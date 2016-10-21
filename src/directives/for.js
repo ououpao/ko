@@ -50,10 +50,8 @@ export default class ForParser extends Parser {
     each(dataList, (data, i, list) => {
       $scope = Object.create(this._scope)
       el = this.node.cloneNode(true)
-
       def($scope, this.alias, data)
       def(el, 'kFor_alias', this.alias)
-
       el.removeAttribute('k-for')
       this.vm._compiler.compile(el, true, $scope)
       listFragment.appendChild(el)
