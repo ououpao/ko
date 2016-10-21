@@ -1,4 +1,5 @@
 import Parser from '../parser'
+import { isNodeType } from '../util'
 
 export default class TextParser extends Parser {
   constructor(vm, exp, node, scope) {
@@ -9,6 +10,10 @@ export default class TextParser extends Parser {
     this.init()
   }
   init() {
+    if (isNodeType(this.node)) {
+      
+      this.node.removeAttribute('k-text')
+    }
     this.bind(this.exp)
   }
   update(newValue) {
