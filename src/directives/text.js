@@ -11,7 +11,6 @@ export default class TextParser extends Parser {
   }
   init() {
     if (isNodeType(this.node)) {
-      
       this.node.removeAttribute('k-text')
     }
     this.bind(this.exp)

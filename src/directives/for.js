@@ -11,6 +11,7 @@ export default class ForParser extends Parser {
     this.$parent = node.parentNode
     this.$next = node.nextSibling
     this.scope = scope
+    this._scope = this.scope || this.vm._data
     this.init()
   }
 
@@ -19,26 +20,48 @@ export default class ForParser extends Parser {
   }
 
   parse() {
-    const scope = this.scope || this.vm._data
     const matchs = this.exp.match(forExpReg)
-    const alias = matchs[1]
-    const iterator = matchs[2]
-    const iteratorGetter = this.createGetter(iterator, scope)
-    const dataList = iteratorGetter()
-    const listFragment = createFragment()
+    this.alias = matchs[1]
+    this.iterator = matchs[2]
+    this.bind(this.iterator)
+  }
+
+  render(dataList, isReRender) {
+    const listFragment = this.createList(dataList)
+    if (isReRender) {
+      this.clearList()
+      this.$parent.insertBefore(listFragment, this.$next)
+    } else {
+      this.$parent.replaceChild(listFragment, this.node)
+    }
+  }
+
+  clearList() {
+    const childNodes = this.$parent.childNodes
+    each(childNodes, node => {
+      if (node.kFor_alias == this.alias) {
+        this.$parent.removeChild(node)
+      }
+    })
+  }
+
+  createList(dataList) {
+    let $scope, el, listFragment = createFragment()
     each(dataList, (data, i, list) => {
-      const $scope = Object.create(scope)
-      const el = this.node.cloneNode(true)
-      def($scope, alias, data)
+      $scope = Object.create(this._scope)
+      el = this.node.cloneNode(true)
+
+      def($scope, this.alias, data)
+      def(el, 'kFor_alias', this.alias)
+
       el.removeAttribute('k-for')
       this.vm._compiler.compile(el, true, $scope)
       listFragment.appendChild(el)
     })
-    this.$parent.insertBefore(listFragment, this.$next)
-    this.$parent.removeChild(this.node)
+    return listFragment
   }
 
-  update(newValue) {
-    this.node.textContent = newValue
+  update(newValue, oldValue) {
+    this.render(newValue, !!oldValue)
   }
 }

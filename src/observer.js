@@ -24,10 +24,11 @@ class Observer {
         return val
       },
       set(newVal) {
+        const oldVal = val
         if (newVal == val) return
         val = newVal
         observe(newVal)
-        dep.notify(newVal, val)
+        dep.notify(newVal, oldVal)
       }
     })
   }

@@ -8,17 +8,23 @@ export default class Watcher {
     this.cb = cb
     this.init()
   }
+
   init() {
     Dep.target = this
-    this.update()
+    this.setValue()
+    this.update(this.value)
     Dep.target = null
   }
-  update() {
+
+  setValue() {
     try {
       this.value = this.getter()
-    }catch(err) {
+    } catch (err) {
       console.error(`Error when evaluating expression "${this.exp}":${err}`)
     }
-    this.cb(this.value)
+  }
+
+  update(newValue, oldValue) {
+    this.cb(newValue, oldValue)
   }
 }
