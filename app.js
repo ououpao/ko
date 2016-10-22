@@ -23,7 +23,10 @@ window.data = {
   }, {
     name: 'HTML',
     mastery: 8
-  }]
+  }],
+  showName: function(e) {
+    console.log(e.target)
+  }
 }
 window.Ko = new Ko({
   el: '#app',

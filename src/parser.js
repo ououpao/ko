@@ -50,11 +50,12 @@ function replaceScope(string) {
 }
 
 export default class Parser {
-  constructor([vm, node, exp, scope]) {
+  constructor([vm, node, scope, exp, params]) {
     this.vm = vm
     this.exp = exp
     this.node = node
     this.scope = scope
+    this.params = params
   }
 
   bind(exp) {

@@ -18,19 +18,25 @@ function isDirective(name) {
 
 function getDirectives(node) {
   let attrs = getAttrsArray(node)
-  let name, expression, directives = []
+  let name, expression, params, directives = []
   attrs.forEach((attr) => {
     name = attr.name
     expression = attr.value
     if (isDirective(name)) {
-      name = name.replace(/k-/, '')
+      params = getDirectiveParam(name)
+      name = name.replace(/k-([a-z]+):.*/g, '$1')
       directives.push({
         name,
+        params,
         expression
       })
     }
   })
   return directives
+}
+
+function getDirectiveParam(name) {
+  return name.split(':').splice(1)
 }
 
 function hasDirective(node) {
@@ -70,9 +76,9 @@ export default class Compile {
     let node, i = childNodes.length
     if (root) {
       this._unCompileNodes = []
-    }
-    if (hasDirective(el)) {
-      this._unCompileNodes.push([el, scope])
+      if (hasDirective(el)) {
+        this._unCompileNodes.push([el, scope])
+      }
     }
     while (i--) {
       node = childNodes[i]
@@ -100,6 +106,16 @@ export default class Compile {
     })
   }
 
+  compileDirective(node, scope) {
+    let directves = getDirectives(node)
+    directves.forEach(directve => {
+      const Directive = Directives[directve.name]
+      if (Directive) {
+        new Directive(this.vm, node, scope, directve.expression, directve.params)
+      }
+    })
+  }
+
   // static {{exp}} static => 'static' + (exp) + 'static'
   compileText(node, scope) {
     const textContent = node.textContent
@@ -114,17 +130,9 @@ export default class Compile {
       }
     })
     expression = expressionClips.join('+')
-    new Directives.text(this.vm, node, expression, scope)
+    new Directives.text(this.vm, node, scope, expression)
   }
 
-  compileDirective(node, scope) {
-    let directves = getDirectives(node)
-    directves.forEach(directve => {
-      const Directive = Directives[directve.name]
-      if (Directive) {
-        new Directive(this.vm, node, directve.expression, scope)
-      }
-    })
-  }
+
 
 }
