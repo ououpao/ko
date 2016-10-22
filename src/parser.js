@@ -90,11 +90,9 @@ export default class Parser {
     if (isNormal(exp)) {
       return 'scope.' + exp;
     }
-
     exp = (' ' + exp).replace(regReplaceConst, saveConst);
     exp = exp.replace(regReplaceScope, replaceScope);
     exp = exp.replace(regSaveConst, returnConst);
-
     return exp;
   }
 

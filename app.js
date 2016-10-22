@@ -4,7 +4,7 @@ if (module.hot) {
   module.hot.accept();
 }
 window.data = {
-	first: 'Liao',
+  first: 'Liao',
   name: 'jingsi',
   nickName: 'kraaas',
   github: 'github.com/kraaas',
@@ -23,12 +23,14 @@ window.data = {
   }, {
     name: 'HTML',
     mastery: 8
-  }],
-  showName: function(e) {
-    console.log(e.target)
-  }
+  }]
 }
 window.Ko = new Ko({
   el: '#app',
-  data: data
+  data: data,
+  methods: {
+    showName: function(e) {
+      console.log(e.target)
+    }
+  }
 })

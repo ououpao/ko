@@ -5,7 +5,7 @@ Simple mvvm library.
 - [x] text
 - [x] for
 - [x] show
-- [ ] on
+- [x] on
 - [ ] mthods
 
 #### components system
