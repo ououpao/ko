@@ -8,17 +8,15 @@ export default class OnParser extends Parser {
   }
   init() {
     this.bind(this.exp)
-    this.bindEvent()
   }
 
-  bindEvent() {
-    const listener = this.watcher.value.bind(this.vm._data)
+  bindEvent(listener) {
     this.node.addEventListener(this.event, function(evt) {
       listener(evt)
     })
   }
 
-  update() {
-
+  update(listener) {
+    this.bindEvent(listener)
   }
 }

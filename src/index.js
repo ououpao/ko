@@ -1,4 +1,4 @@
-import { query } from './util'
+import { query, isFunction } from './util'
 import parsers from './parser'
 import observer from './observer'
 import Compiler from './compiler'
@@ -17,8 +17,24 @@ class Korol {
   }
 
   init() {
+    this.proxMethods()
     this.initData()
     this.mount(this._el)
+  }
+
+  proxMethods() {
+    const methods = this._options.methods
+    let keys, key, fn, i
+    if (methods) {
+      keys = Object.keys(methods)
+      i = keys.length
+      while (i--) {
+        key = keys[i]
+        fn = methods[key]
+        if (isFunction(fn))
+          this._data[key] = fn.bind(this._data)
+      }
+    }
   }
 
   initData() {

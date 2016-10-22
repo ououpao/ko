@@ -17,6 +17,10 @@ export function isObject(obj) {
   return Object.prototype.toString.call(obj) === '[object Object]'
 }
 
+export function isFunction(obj) {
+  return Object.prototype.toString.call(obj) === '[object Function]'
+}
+
 export function each(obj, callback) {
   if (!obj) return
   if (isArray(obj)) {
