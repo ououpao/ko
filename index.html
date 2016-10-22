@@ -20,7 +20,8 @@
     padding: 0;
   }
   
-  .profile, .skill {
+  .profile,
+  .skill {
     padding: 20px;
     width: 300px;
     min-height: 300px;
@@ -28,7 +29,8 @@
     box-shadow: 0px 0px 5px #dedede;
   }
   
-  .profile .profile_item, .skill .skill_item {
+  .profile .profile_item,
+  .skill .skill_item {
     padding: 10px 0;
   }
   </style>
@@ -79,6 +81,9 @@
         <span k-text="skill.name"></span>
         <span k-text="skill.mastery"></span>
       </section>
+    </div>
+    <div k-show="true">
+      skillList
     </div>
   </main>
 </body>

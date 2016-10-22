@@ -68,7 +68,7 @@ export default class Compile {
   compile(el, root, scope) {
     const childNodes = el.childNodes
     let node, i = childNodes.length
-    if(root) {
+    if (root) {
       this._unCompileNodes = []
     }
     if (hasDirective(el)) {
@@ -114,7 +114,7 @@ export default class Compile {
       }
     })
     expression = expressionClips.join('+')
-    new Directives.text(this.vm, expression, node, scope)
+    new Directives.text(this.vm, node, expression, scope)
   }
 
   compileDirective(node, scope) {
@@ -122,7 +122,7 @@ export default class Compile {
     directves.forEach(directve => {
       const Directive = Directives[directve.name]
       if (Directive) {
-        new Directive(this.vm, directve.expression, node, scope)
+        new Directive(this.vm, node, directve.expression, scope)
       }
     })
   }

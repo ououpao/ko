@@ -2,11 +2,8 @@ import Parser from '../parser'
 import { isNodeType } from '../util'
 
 export default class TextParser extends Parser {
-  constructor(vm, exp, node, scope) {
-    super(vm)
-    this.exp = exp
-    this.node = node
-    this.scope = scope
+  constructor(...args) {
+    super(args)
     this.init()
   }
   init() {
@@ -16,6 +13,6 @@ export default class TextParser extends Parser {
     this.bind(this.exp)
   }
   update(newValue) {
-    this.node.textContent = newValue
+    this.node.textContent = newValue.toString()
   }
 }

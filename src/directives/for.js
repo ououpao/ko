@@ -4,13 +4,10 @@ import { each, def, createFragment } from '../util'
 const forExpReg = /(.*)\s+in\s+(.*)/
 
 export default class ForParser extends Parser {
-  constructor(vm, exp, node, scope) {
-    super(vm)
-    this.exp = exp
-    this.node = node
-    this.$parent = node.parentNode
-    this.$next = node.nextSibling
-    this.scope = scope
+  constructor(...args) {
+    super(args)
+    this.$parent = this.node.parentNode
+    this.$next = this.node.nextSibling
     this._scope = this.scope || this.vm._data
     this.init()
   }
@@ -29,20 +26,24 @@ export default class ForParser extends Parser {
   render(dataList, isReRender) {
     const listFragment = this.createList(dataList)
     if (isReRender) {
-      this.clearList()
+      this.removeOldList()
       this.$parent.insertBefore(listFragment, this.$next)
     } else {
       this.$parent.replaceChild(listFragment, this.node)
     }
   }
 
-  clearList() {
+  removeOldList() {
     const childNodes = this.$parent.childNodes
     each(childNodes, node => {
       if (node.kFor_alias == this.alias) {
         this.$parent.removeChild(node)
       }
     })
+  }
+
+  removeOldWatchers() {
+
   }
 
   createList(dataList) {
