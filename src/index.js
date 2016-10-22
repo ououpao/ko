@@ -3,7 +3,7 @@ import parsers from './parser'
 import observer from './observer'
 import Compiler from './compiler'
 
-class Korol {
+export default class Ko {
   constructor(options) {
     this._options = Object.assign({}, options)
 
@@ -46,5 +46,3 @@ class Korol {
     this._el.appendChild(compiler._fragment)
   }
 }
-
-export default Korol
