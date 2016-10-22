@@ -6,6 +6,6 @@ Simple mvvm library.
 - [x] for
 - [x] show
 - [x] on
-- [ ] mthods
+- [x] mthods
 
 #### components system
