@@ -4,6 +4,7 @@ Simple mvvm library.
 #### direcitves
 - [x] text
 - [x] for
+- [x] show
 - [ ] mthods
 
 #### components system
