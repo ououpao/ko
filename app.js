@@ -1,4 +1,5 @@
 import Ko from './src/index'
+import template from './template.html'
 
 if (module.hot) {
   module.hot.accept();
@@ -25,6 +26,16 @@ window.data = {
     mastery: 8
   }]
 }
+let model = Ko.extend({
+  template: template,
+  props: {
+    title: '',
+    content: ''
+  },
+  data: {
+
+  },
+})
 window.Ko = new Ko({
   el: '#app',
   data: data,

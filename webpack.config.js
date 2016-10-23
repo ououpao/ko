@@ -9,7 +9,7 @@ module.exports = {
   ],
   output: {
     path: path.resolve(__dirname, "dist/assets"),
-    filename: 'kite.js',
+    filename: 'ko.js',
     chunkFilename: '[name].js',
     publicPath: '/'
   },
